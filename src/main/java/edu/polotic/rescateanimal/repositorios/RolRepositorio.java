@@ -1,6 +1,6 @@
-package edu.polo.qatar.repositorios;
+package edu.polotic.rescateanimal.repositorios;
 
-import edu.polo.qatar.entidades.*;
+import edu.polotic.rescateanimal.entidades.*;
 
 import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;

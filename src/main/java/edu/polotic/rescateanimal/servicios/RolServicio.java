@@ -1,7 +1,7 @@
-package edu.polo.qatar.servicios;
+package edu.polotic.rescateanimal.servicios;
 
-import edu.polo.qatar.entidades.*;
-import edu.polo.qatar.repositorios.*;
+import edu.polotic.rescateanimal.entidades.*;
+import edu.polotic.rescateanimal.repositorios.*;
 import java.util.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;

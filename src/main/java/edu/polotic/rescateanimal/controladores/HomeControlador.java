@@ -17,7 +17,7 @@ public class HomeControlador {
         maw.setViewName("fragments/base");
         maw.addObject("titulo", "Inicio");
         maw.addObject("vista", "inicio/home");
-
+        return maw;
     }
 
     @RequestMapping("/ejemplo")

@@ -1,7 +1,7 @@
-package edu.polo.qatar.controladores;
+package edu.polotic.rescateanimal.controladores;
 
-import edu.polo.qatar.entidades.*;
-import edu.polo.qatar.servicios.*;
+import edu.polotic.rescateanimal.entidades.*;
+import edu.polotic.rescateanimal.servicios.*;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.validation.BindingResult;

@@ -1,21 +1,26 @@
 package edu.polotic.rescateanimal.controladores;
 
-import edu.polotic.rescateanimal.dto.*;
-import edu.polotic.rescateanimal.entidades.*;
-import edu.polotic.rescateanimal.repositorios.*;
-import edu.polotic.rescateanimal.servicios.*;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+
+import edu.polotic.rescateanimal.dto.RegistroDto;
+import edu.polotic.rescateanimal.entidades.Usuario;
+import edu.polotic.rescateanimal.repositorios.RolRepositorio;
+import edu.polotic.rescateanimal.repositorios.UsuarioRepositorio;
+
 
 @Controller
 public class AuthControlador {
@@ -29,9 +34,7 @@ public class AuthControlador {
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
     
-    @Autowired
-    private RecaptchaServicio recapthaServicio;
-        
+ 
 
     @GetMapping("/login")
     public ModelAndView showLoginForm(Model model, 
@@ -66,14 +69,8 @@ public class AuthControlador {
 	@PostMapping("/registro")
 	public ModelAndView registrar(@RequestParam(name="g-recaptcha-response") String recaptchaResponse, @Valid RegistroDto registroDto, BindingResult br, RedirectAttributes ra, HttpServletRequest request)
     {
-        String ip = request.getRemoteAddr();
-        String captchaVerifyMessage = recaptchaServicio.verifyRecaptcha(ip, recaptchaResponse);
-
-        if (captchaVerifyMessage != "") {
-            br.rejectValue("recaptcha", "recaptcha", captchaVerifyMessage);
-        }
-
-        if ( br.hasErrors() ) {
+    
+          if ( br.hasErrors() ) {
 			return this.registro(registroDto);
 		}
 
