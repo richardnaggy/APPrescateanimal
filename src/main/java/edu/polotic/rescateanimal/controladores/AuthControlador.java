@@ -67,7 +67,7 @@ public class AuthControlador {
 	}
 
 	@PostMapping("/registro")
-	public ModelAndView registrar(@RequestParam(name="g-recaptcha-response") String recaptchaResponse, @Valid RegistroDto registroDto, BindingResult br, RedirectAttributes ra, HttpServletRequest request)
+	public ModelAndView registrar(@RequestParam @Valid RegistroDto registroDto, BindingResult br, RedirectAttributes ra, HttpServletRequest request)
     {
     
           if ( br.hasErrors() ) {
