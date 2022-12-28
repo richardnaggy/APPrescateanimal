@@ -20,13 +20,23 @@ public class AnimalControlador implements WebMvcConfigurer{
     @Autowired
     AnimalServicio animalServicio;
 
-    @PostMapping("/crear")
-	public ModelAndView guardar( @Valid  Animal animal, BindingResult br, RedirectAttributes ra)
+	@GetMapping("/denunciar")
+	public ModelAndView formulario(Animal animal)
     {
-        animalServicio.save(animal); 
-        HomeControlador hc = new HomeControlador();
-        ModelAndView maw = hc.home();
+        ModelAndView maw = new ModelAndView();
+        maw.setViewName("fragments/formulario");
+        maw.addObject("titulo", "Denunciar");
+        return maw;
+	}
 
+    @PostMapping("/denunciar")
+	public ModelAndView guardar(@Valid Animal animal, BindingResult br, RedirectAttributes ra)
+    {
+        animalServicio.save(animal);
+        
+        ModelAndView maw = new ModelAndView();
+        maw.setViewName("fragments/base");
+        maw.addObject("titulo", "Inicio");
         maw.addObject("exito", "Denuncia realizada exitosamente");
 		return maw;
 	}
