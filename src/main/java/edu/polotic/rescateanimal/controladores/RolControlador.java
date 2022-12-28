@@ -25,7 +25,7 @@ public class RolControlador implements WebMvcConfigurer {
         maw.setViewName("fragments/base");
         maw.addObject("titulo", "Listado de roles");
         maw.addObject("vista", "roles/index");
-        maw.addObject("roles", rolServicio.getAll());
+        maw.addObject("roles", rolServicio.getAll(registro -> lista.add(registro)));
         return maw;
     }
 
